@@ -1,8 +1,8 @@
-import ruleValidationController from '../controllers/run-validation-controller';
-import ruleValidationMiddleware from '../middlewares/run-validation-middleware';
+import userController from '../controllers/userController';
+// import ruleValidationMiddleware from '../middlewares/runValidationMiddleware';
 
 const Route = (router) => {
-  router.get('/', ruleValidationController.getRule);
+  router.get('/', userController.getUser);
   return router;
 };
 
