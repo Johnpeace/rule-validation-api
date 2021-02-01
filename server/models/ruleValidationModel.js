@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
 
-const runValidationSchema = new mongoose.Schema({
+const ruleValidationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'A name must be provided'],
@@ -41,6 +41,6 @@ const runValidationSchema = new mongoose.Schema({
   },
 });
 
-const RunValidation = mongoose.model('RunValidation', runValidationSchema);
+const RuleValidation = mongoose.model('RuleValidation', ruleValidationSchema);
 
-export default RunValidation;
+export default RuleValidation;

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import RunValidation from '../../server/models/runValidationModel';
+import RunValidation from '../../server/models/ruleValidationModel';
 import User from '../../server/models/userModel';
 
 const userOneId = new mongoose.Types.ObjectId();
@@ -33,7 +33,7 @@ const validateRuleOne = {
 const setupDatabase = async () => {
   await User.deleteMany();
   await RunValidation.deleteMany();
-  const user = await new User(userOne).save();
+  await new User(userOne).save();
   await new RunValidation(validateRuleOne).save();
 };
 

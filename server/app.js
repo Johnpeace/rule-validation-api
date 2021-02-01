@@ -26,7 +26,7 @@ app.use(mongoSanitize());
 app.use(xss());
 
 const router = express.Router();
-app.use("/api/v1", Route(router));
+app.use("/", Route(router));
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
