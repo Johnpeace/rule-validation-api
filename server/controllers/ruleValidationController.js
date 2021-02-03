@@ -1,5 +1,4 @@
 import Response from '../utils/response';
-import RuleValidation from '../models/ruleValidationModel';
 
 export default class ruleValidationController {
   /**

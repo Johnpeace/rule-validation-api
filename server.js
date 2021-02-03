@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import Debug from "debug";
 import { config } from "dotenv";
 
@@ -12,22 +11,6 @@ process.on("uncaughtException", (error) => {
 
 config({ path: "./config.env" });
 import app from "./server/app";
-
-let DB;
-
-if (process.env.NODE_ENV === "development") {
-  DB = process.env.DATABASE_LOCAL;
-} else {
-  DB = process.env.DATABASE;
-}
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then(() => debug("DB connection successful"));
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
