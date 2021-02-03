@@ -19,7 +19,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest --watch --runInBand --detectOpenHandles",
     "dev": "DEBUG=http nodemon --exec babel-node server.js",
-    "start": "DEBUG=http babel-node server.js",
+    "start": "babel-node server.js",
     "debug": "ndb server.js"
   },
   "homepage": "https://github.com/Johnpeace/flutterwave#readme",
