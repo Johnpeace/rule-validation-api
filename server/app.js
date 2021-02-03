@@ -7,7 +7,7 @@ import xss from "xss-clean";
 
 import AppError from "./utils/app-error";
 import globalError from "./utils/global-error";
-import Route from "./route/route";
+import Route from "./route";
 
 const app = express();
 
