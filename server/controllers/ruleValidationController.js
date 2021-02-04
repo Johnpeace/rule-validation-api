@@ -11,22 +11,48 @@ export default class ruleValidationController {
    * @returns {Object} rule validation JSON Object
    */
   static async create(req, res) {
-    try {
-      const {
-        field,
-        field_value,
-        condition,
-        condition_value,
-      } = new RuleValidation.create(req.rule);
+    const { rule, data } = req.body;
+    const { field, condition, condition_value } = rule;
+    const { name, crew, age, position, missions } = data;
 
-      let validation = {
-        error: false,
-        field,
-        field_value,
-        condition,
-        condition_value,
-      };
+    let query;
 
+    switch (condition) {
+      case 'eq':
+        query = data[field] === condition_value;
+        break;
+      case 'neq':
+        query = data[field] !== condition_value;
+        break;
+      case 'gt':
+        query = data[field] > condition_value;
+        break;
+      case 'gte':
+        query = data[field] >= condition_value;
+        break;
+      case 'contains':
+        query = data[field].includes(condition_value);
+        break;
+
+      default:
+        return Response.ruleValidationResponseMessage(
+          `field ${field} successfully validated.`,
+          200,
+          'success',
+          validation,
+          res
+        );
+    }
+
+    let validation = {
+      error: !query,
+      field,
+      field_value: condition_value,
+      condition,
+      condition_value,
+    };
+
+    if (query) {
       return Response.ruleValidationResponseMessage(
         `field ${field} successfully validated.`,
         200,
@@ -34,14 +60,14 @@ export default class ruleValidationController {
         validation,
         res
       );
-    } catch (error) {
-      // return Response.ruleValidationResponseMessage(
-      //   `field ${field} successfully validated.`,
-      //   200,
-      //   'success',
-      //   validation,
-      //   res
-      // );
+    } else {
+      return Response.ruleValidationResponseMessage(
+        `field ${field} failed validation.`,
+        400,
+        'error',
+        validation,
+        res
+      );
     }
   }
 }

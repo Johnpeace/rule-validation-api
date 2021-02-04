@@ -1,5 +1,5 @@
 import Response from '../utils/response';
-import User from '../utils/user.json';
+import User from '../../user.json';
 
 export default class userController {
   /**
