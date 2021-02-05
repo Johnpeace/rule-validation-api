@@ -27,9 +27,10 @@
  > [Repository](https://github.com/Johnpeace/rule-validation-api)
 
  ## Project References
- * [Jest](https://jestjs.io/)
  * [ESLint](https://eslint.org/)
  * [Heroku](https://heroku.com/)
+ * [Mocha](https://mochajs.org/)
+
 
 
 ## Author
