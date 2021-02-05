@@ -122,7 +122,8 @@ export default class ruleValidationMiddleware {
 
     let splittedField = field.split('.');
     let nestedField;
-    if (splittedField) {
+    
+    if (splittedField.length > 1) {
       data[splittedField[1]] = data[splittedField[0]][splittedField[1]];
       nestedField = splittedField[1];
       req.body.rule.nestedField = nestedField;

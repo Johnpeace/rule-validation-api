@@ -13,8 +13,6 @@ export default class ruleValidationController {
   static async create(req, res) {
     const { rule, data } = req.body;
     const { field, condition, condition_value, nestedField } = rule;
-
-
     let query;
 
     let validation = {
