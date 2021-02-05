@@ -14,7 +14,6 @@ export default class ruleValidationMiddleware {
 
     const { rule, data } = req.body;
     const { field, condition, condition_value } = rule;
-    const { name, crew, age, position, missions } = data;
 
     if (typeof rule === 'object') {
       if (!field) {
@@ -121,7 +120,23 @@ export default class ruleValidationMiddleware {
       );
     }
 
-    if (!data[field]) {
+    let splittedField = field.split('.');
+    let nestedField;
+    if (splittedField) {
+      data[splittedField[1]] = data[splittedField[0]][splittedField[1]];
+      nestedField = splittedField[1];
+      req.body.rule.nestedField = nestedField;
+
+      if (!data[nestedField]) {
+        return Response.genericResponseMessage(
+          `field ${field} is missing from data.`,
+          400,
+          'error',
+          null,
+          res
+        );
+      }
+    } else {
       return Response.genericResponseMessage(
         `field ${field} is missing from data.`,
         400,
